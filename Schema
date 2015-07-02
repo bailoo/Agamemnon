@@ -1,0 +1,19 @@
+CREATE KEYSPACE ksp 
+  WITH REPLICATION = { 'class' : 'SimpleStrategy', 'replication_factor' : 1 };
+
+    CREATE TABLE speedalert(
+      imei ascii,
+      date ascii,
+      dtime timestamp,
+      stime timestamp,
+      speed float,
+      locationid ascii,
+      locationname ascii,
+      latitude ascii,
+      longitude ascii,
+      roadid ascii,
+      roadname ascii,
+      logtime timestamp,
+      PRIMARY KEY ((imei, date), dtime))
+      WITH CLUSTERING ORDER BY (dtime DESC);
+    create index speedalert_roadid on speedalert(roadid);
